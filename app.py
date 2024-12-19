@@ -1,3 +1,5 @@
+import sys
+
 def welcome():
     print('insert username:')
     username = input()
@@ -13,6 +15,14 @@ def start_play():
     3. Currency Roulette - try and guess the value of a random amount of USD in ILS
     """
     print(choosing_msg)
-    game = input()
+    game = int(input())
+    if 1 <= game and game <= 3:
+        print(f'You chose game: {game}')
+    else:
+        sys.exit('error: insert a number between 1-3')
     print("Select a difficulty level between 1 and 5")
-    difficulty = input()
+    difficulty = int(input())
+    if 1 <= difficulty and difficulty <= 5:
+        print(f'You chose difficulty level: {difficulty}')
+    else:
+        sys.exit('error: insert a number between 1-5')
