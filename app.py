@@ -24,5 +24,6 @@ def start_play():
     difficulty = int(input())
     if 1 <= difficulty and difficulty <= 5:
         print(f'You chose difficulty level: {difficulty}')
+        return game, difficulty
     else:
         sys.exit('error: insert a number between 1-5')
