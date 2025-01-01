@@ -3,7 +3,6 @@ import random, sys
 class Guess_game:
     def generate_number(difficulty):
         secret_number = random.randint(0, difficulty)
-        print(f'random number is: {secret_number}')
         return secret_number
 
     def get_guess_from_user(difficulty):
@@ -17,17 +16,17 @@ class Guess_game:
 
     def compare_results(secret_number, guess_from_user):
         if secret_number == guess_from_user:
-            ismatch = True
+            return True
         else:
-            ismatch = False
-        return ismatch
+            return False
 
     def play(difficulty):
         secret_number = int(Guess_game.generate_number(difficulty))
         guess_from_user = int(Guess_game.get_guess_from_user(difficulty))
+        print(f'random number is: {secret_number}')
         result = Guess_game.compare_results(secret_number, guess_from_user)
         if result:
-            print("You win!!!!")
+            return True
         else:
-            print("You lose :(")
+            return False
 

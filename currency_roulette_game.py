@@ -1,46 +1,36 @@
-import requests
-class Currency_roulette_game:
-    def get_money_interval():
-        pass
-	
+import requests, random, sys
 
-
-
-
-
-
-
-
-
-    
-class Currency_convertor:
-	# empty dict to store the conversion rates
-	rates = {} 
-	def __init__(self, url):
+class Currency_roulette_game: 	
+	def get_money_interval(difficulty):
+		url = str.__add__('http://data.fixer.io/api/latest?access_key=', '27ac479c1a5cf1ced3dec5396f713421') 
+		rates = {} 
 		data = requests.get(url).json()
+		rates = data["rates"]
 
-		# Extracting only the rates from the json data
-		self.rates = data["rates"] 
+		currency = rates["ILS"] / rates["USD"]
+		interval = 10 - difficulty
+		return currency, interval
 
-	# function to do a simple cross multiplication between 
-	# the amount and the conversion rates
-	def convert(self, from_currency, to_currency, amount):
-		initial_amount = amount
-		if from_currency != 'EUR' :
-			amount = amount / self.rates[from_currency]
+	def get_guess_from_user(random_amount):
+		try:
+			user_guess = float(input(f'Guess the converted value of {random_amount}USD to ILS'))
+			return user_guess
+		except:
+			sys.exit('error: Invalid input! Please enter a valid number')
+			
+	def compare_results(difficulty, random_amount):
+		currency_and_interval = Currency_roulette_game.get_money_interval(difficulty)
+		currency = currency_and_interval[0]
+		converted_amount = currency*random_amount
+		user_guess = Currency_roulette_game.get_guess_from_user(random_amount)
+		interval = int(currency_and_interval[1])
+		print(f'You guessed: {user_guess}. The answer is: {converted_amount}')
+		if (user_guess < converted_amount and user_guess + interval < converted_amount) or (user_guess > converted_amount and user_guess - interval > converted_amount):
+			return False
+		else:
+			return True
 
-		# limiting the precision to 2 decimal places
-		amount = round(amount * self.rates[to_currency], 2)
-		print('{} {} = {} {}'.format(initial_amount, from_currency, amount, to_currency))
-
-# Driver code
-if __name__ == "__main__":
-
-	# YOUR_ACCESS_KEY = 'GET YOUR ACCESS KEY FROM fixer.io'
-	url = str.__add__('http://data.fixer.io/api/latest?access_key=', '27ac479c1a5cf1ced3dec5396f713421') 
-	c = Currency_convertor(url)
-	from_country = input("From Country: ")
-	to_country = input("TO Country: ")
-	amount = int(input("Amount: "))
-
-	c.convert(from_country, to_country, amount)
+	def play(difficulty):
+		random_amount = random.randint(1, 100)
+		Currency_roulette_game.get_money_interval(difficulty)
+		return Currency_roulette_game.compare_results(difficulty, random_amount)
