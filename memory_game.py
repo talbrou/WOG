@@ -16,7 +16,7 @@ def generate_sequence(difficulty):
 
 def get_list_from_user(difficulty, generated_list):
     utils.Screen_cleaner()
-    print(f'Are you ready to see your {difficulty} numbers? Focus, because they will not be up there for long!')
+    print(f'Are you ready to see your sequence? Focus, because it will not be up there for long!')
     time.sleep(3)
     count = 5
     while count > 0:
@@ -24,7 +24,6 @@ def get_list_from_user(difficulty, generated_list):
         time.sleep(1)
         count -= 1
     time.sleep(0.7)
-    utils.Screen_cleaner()
     print(generated_list)
     time.sleep(0.7)
     utils.Screen_cleaner()
