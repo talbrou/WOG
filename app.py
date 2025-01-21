@@ -2,6 +2,7 @@ import sys
 import currency_roulette_game
 import guess_game
 import memory_game
+import score
 
 
 def welcome():
@@ -41,6 +42,7 @@ def start_play():
         result = currency_roulette_game.play(difficulty)
 # prompt result
     if result:
+        score.add_score(difficulty)
         print("You win!!!!")
     else:
         print("You lose :(")

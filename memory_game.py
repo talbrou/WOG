@@ -2,6 +2,7 @@ import os
 import random
 import sys
 import time
+import utils
 
 
 def generate_sequence(difficulty):
@@ -14,7 +15,7 @@ def generate_sequence(difficulty):
 
 
 def get_list_from_user(difficulty, generated_list):
-    os.system('cls')
+    utils.Screen_cleaner()
     print(f'Are you ready to see your {difficulty} numbers? Focus, because they will not be up there for long!')
     time.sleep(3)
     count = 5
@@ -23,10 +24,10 @@ def get_list_from_user(difficulty, generated_list):
         time.sleep(1)
         count -= 1
     time.sleep(0.7)
-    os.system('cls')
+    utils.Screen_cleaner()
     print(generated_list)
     time.sleep(0.7)
-    os.system('cls')
+    utils.Screen_cleaner()
     try:
         raw_list = input(f'insert the {difficulty} long list with a comma between each number')
         user_list = f'[{raw_list}]'
@@ -46,6 +47,6 @@ def is_list_equal(difficulty, generated_list, processed_list):
 def play(difficulty):
     generated_list = generate_sequence(difficulty)
     processed_list = get_list_from_user(difficulty, generated_list)
-    print(f'Original numbers: {generated_list}')
-    print(f'Your numbers: {processed_list}')
+    print(f'Original sequence: {generated_list}')
+    print(f'Your sequence: {processed_list}')
     return is_list_equal(difficulty, generated_list, processed_list)
