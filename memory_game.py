@@ -4,7 +4,6 @@ import sys
 import time
 
 
-# class MemoryGame: 
 def generate_sequence(difficulty):
     i = 0
     generated_list = []
