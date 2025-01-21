@@ -1,7 +1,8 @@
 import sys
-from guess_game import Guess_game
-from currency_roulette_game import Currency_roulette_game
-from memory_game import Memory_game
+import currency_roulette_game
+import guess_game
+import memory_game
+
 
 def welcome():
     print('insert username:')
@@ -19,27 +20,27 @@ def start_play():
     """
     print(choosing_msg)
     game = int(input())
-    if 1 <= game and game <= 3:
+    if 1 <= game <= 3:
         print(f'You chose game: {game}')
     else:
         sys.exit('error: insert a number between 1-3')
     print("Select a difficulty level between 1 and 5")
     difficulty = int(input())
-    if 1 <= difficulty and difficulty <= 5:
+    if 1 <= difficulty <= 5:
         print(f'You chose difficulty level: {difficulty}')
     else:
         sys.exit('error: insert a number between 1-5')
 # start Memory Game
-    if game == 1: 
-        result = Memory_game.play(difficulty)
+    if game == 1:
+        result = memory_game.play(difficulty)
 # start Guess Game
-    elif game == 2: 
-        result = Guess_game.play(difficulty)    
+    elif game == 2:
+        result = guess_game.play(difficulty)
 # start Currency Roulette Game
-    else: 
-        result = Currency_roulette_game.play(difficulty)
+    else:
+        result = currency_roulette_game.play(difficulty)
 # prompt result
-    if result == True:
+    if result:
         print("You win!!!!")
     else:
         print("You lose :(")
