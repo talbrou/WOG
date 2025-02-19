@@ -18,7 +18,7 @@ def get_list_from_user(difficulty, generated_list):
     utils.Screen_cleaner()
     print(f'Are you ready to see your sequence? Focus, because it will not be up there for long!')
     time.sleep(3)
-    count = 5
+    count = 3
     while count > 0:
         print(f'In {count} seconds...')
         time.sleep(1)
@@ -27,13 +27,16 @@ def get_list_from_user(difficulty, generated_list):
     print(generated_list)
     time.sleep(0.7)
     utils.Screen_cleaner()
-    try:
-        raw_list = input(f'insert the {difficulty} long list with a comma between each number')
-        user_list = f'[{raw_list}]'
-        processed_list = eval(user_list)
-        return processed_list
-    except:
-        sys.exit('error: Invalid input! Please enter a valid list!')
+
+    print(f'Enter the {difficulty} numbers list with a comma between each number:')
+    while True:
+        try:
+            raw_list = input()
+            user_list = f'[{raw_list}]'
+            processed_list = eval(user_list)
+            return processed_list
+        except:
+            print('Invalid input! Please enter a valid list!')
 
 
 def is_list_equal(difficulty, generated_list, processed_list):

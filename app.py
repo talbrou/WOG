@@ -1,12 +1,12 @@
 import sys
-import currency_roulette_game
-import guess_game
-import memory_game
-import score
+import games.currency_roulette_game as currency_roulette_game
+import games.guess_game as guess_game
+import games.memory_game as memory_game
+import scoring.score as score
 
 
 def welcome():
-    print('insert username:')
+    print('enter username:')
     username = input()
     print(f'Hi {username} and welcome to the World of Games: The Epic Journey')
 
@@ -20,17 +20,31 @@ def start_play():
     3. Currency Roulette - try and guess the value of a random amount of USD in ILS
     """
     print(choosing_msg)
-    game = int(input())
-    if 1 <= game <= 3:
-        print(f'You chose game: {game}')
-    else:
-        sys.exit('error: insert a number between 1-3')
+
+    while True:
+        try:
+            game = int(input())
+            if 1 <= game <= 3:
+                print(f'You chose game: {game}')
+                break
+            else:
+                print('Try Again: enter a number between 1-3')
+        except ValueError:
+            print("Invalid input. Please enter a number between 1-3")
+
+    
     print("Select a difficulty level between 1 and 5")
-    difficulty = int(input())
-    if 1 <= difficulty <= 5:
-        print(f'You chose difficulty level: {difficulty}')
-    else:
-        sys.exit('error: insert a number between 1-5')
+    while True:
+        try:
+            difficulty = int(input())
+            if 1 <= difficulty <= 5:
+                print(f'You chose difficulty level: {difficulty}')
+                break
+            else:
+                print('Try Again: enter a number between 1-5')
+        except ValueError:
+            print("Invalid input. Please enter a number between 1-5")
+
 # start Memory Game
     if game == 1:
         result = memory_game.play(difficulty)

@@ -1,25 +1,23 @@
 import requests
 import random
 import sys
+from currency_converter import CurrencyConverter
 
 
 def get_money_interval(difficulty):
-	url = str.__add__('http://data.fixer.io/api/latest?access_key=', '27ac479c1a5cf1ced3dec5396f713421') 
-	rates = {} 
-	data = requests.get(url).json()
-	rates = data["rates"]
-
-	currency = rates["ILS"] / rates["USD"]
+	c = CurrencyConverter()
+	currency = (c.convert(1, 'USD', 'ILS'))
 	interval = 10 - difficulty
 	return currency, interval
 
 
 def get_guess_from_user(random_amount):
-	try:
-		user_guess = float(input(f'Guess the converted value of {random_amount}USD to ILS'))
-		return user_guess
-	except:
-		sys.exit('error: Invalid input! Please enter a valid number')
+	while True:
+		try:
+			user_guess = float(input(f'Guess the converted value of {random_amount}USD to ILS'))
+			return user_guess
+		except:
+			print('Invalid input. Please enter a valid number')
 		
 		
 def compare_results(difficulty, random_amount):
