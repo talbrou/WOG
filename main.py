@@ -1,5 +1,4 @@
-import app
-import scoring.main_score as main_score
+from app import *
 
-app.welcome()
-app.start_play()
+welcome()
+start_play()

@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Path to your Dockerfile
+    image: wog_score_flask:latest
+    container_name: wog_score_flask
+    ports:
+      - "5000:5000"  # Map the container port to the host port
+    environment:
+      - VAR1=value1
+      - VAR2=value2
+
+# Push to Docker Hub
+# Make sure to log in to Docker Hub using 'docker login' before pushing

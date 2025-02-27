@@ -1,6 +1,4 @@
-import requests
 import random
-import sys
 from currency_converter import CurrencyConverter
 
 

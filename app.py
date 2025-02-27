@@ -1,8 +1,8 @@
-import sys
+
 import games.currency_roulette_game as currency_roulette_game
 import games.guess_game as guess_game
 import games.memory_game as memory_game
-import scoring.score as score
+from scoring import score
 
 
 def welcome():

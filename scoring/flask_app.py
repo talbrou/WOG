@@ -1,4 +1,5 @@
 from utils import SCORES_FILE_NAME
+from flask import Flask
 
 
 def score_server():
@@ -28,3 +29,12 @@ def score_server():
             </body>
         </html>
         """
+    
+app = Flask(__name__)
+
+@app.route('/')
+def run_app():
+    return score_server()
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=True)

@@ -1,6 +1,3 @@
 currency_converter
-sys
-random
 requests
-time
-os
+flask

@@ -1,8 +1,6 @@
-import os
 import random
-import sys
 import time
-import utils
+from scoring.utils import *
 
 
 def generate_sequence(difficulty):
@@ -15,7 +13,7 @@ def generate_sequence(difficulty):
 
 
 def get_list_from_user(difficulty, generated_list):
-    utils.Screen_cleaner()
+    Screen_cleaner()
     print(f'Are you ready to see your sequence? Focus, because it will not be up there for long!')
     time.sleep(3)
     count = 3
@@ -26,7 +24,7 @@ def get_list_from_user(difficulty, generated_list):
     time.sleep(0.7)
     print(generated_list)
     time.sleep(0.7)
-    utils.Screen_cleaner()
+    Screen_cleaner()
 
     print(f'Enter the {difficulty} numbers list with a comma between each number:')
     while True:

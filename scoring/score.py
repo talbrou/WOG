@@ -1,5 +1,5 @@
 import os
-from utils import SCORES_FILE_NAME
+from scoring.utils import SCORES_FILE_NAME
 
 def add_score(difficulty):
     POINTS_OF_WINNING = (difficulty) * 3 + 5
