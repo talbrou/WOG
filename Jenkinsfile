@@ -24,24 +24,30 @@ pipeline {
             }
         }
 
-        stage('Tag Docker Image') {
+        stage('Run Docker') {
             steps {
                 script {
-                    sh "docker image tag ${DOCKER_IMAGE} ${DOCKER_USERNAME}/${DOCKER_IMAGE}"
+                    sh "docker-compose up -d"
                 }
             }
         }
-        stage('Login to Docker hub') {
+
+        stage('Test') {
             steps {
                 script {
-                    sh "docker login -u talbrou -p ${DOCKER_TOKEN}"
+                    sh "python e2e.py"
                 }
             }
         }
-        stage('Push Docker Image') {
+
+        stage('Tag Docker Image && Push to Docker hub') {
             steps {
                 script {
-                    sh "talbrou/docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE}"
+                    sh '''
+                        docker image tag ${DOCKER_IMAGE} ${DOCKER_USERNAME}/${DOCKER_IMAGE}
+                        docker login -u talbrou -p ${DOCKER_TOKEN}
+                        talbrou/docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE}
+                    '''
                 }
             }
         }
