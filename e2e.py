@@ -1,10 +1,17 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 import os
 
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
 def test_scores_service(app_url):
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(options=chrome_options)
     driver.get(app_url)
 
     time.sleep(2)
@@ -24,7 +31,7 @@ def test_scores_service(app_url):
 
 
 def main_function():
-    app_url="http://127.0.0.1:5000"
+    app_url="http://127.0.0.1:8777"
     if test_scores_service(app_url) == True:
         os._exit(0)
     else:

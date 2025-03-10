@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: wog_score_flask:latest
+    image: wog_score_flask:${DOCKER_IMAGE_TAG}
     container_name: wog_score_flask
     ports:
-      - "5000:5000"
+      - "8777:5000"
