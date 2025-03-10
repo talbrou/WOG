@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_TOKEN = credentials('talbrou')
         DOCKER_USERNAME = 'talbrou'
-        DOCKER_IMAGE_TAG = 'v1.1.2'
+        DOCKER_IMAGE_TAG = 'v1.1.3'
         DOCKER_IMAGE = 'wog_score_flask:${DOCKER_IMAGE_TAG}'
     }
 
