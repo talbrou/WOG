@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_TOKEN = credentials('talbrou')
         DOCKER_USERNAME = 'talbrou'
-        DOCKER_IMAGE_TAG = 'v1.1.0'
+        DOCKER_IMAGE_TAG = 'v1.1.1'
         DOCKER_IMAGE = 'wog_score_flask:${DOCKER_IMAGE_TAG}'
     }
 
@@ -36,7 +36,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh "python e2e.py"
+                    sh "python3 e2e.py"
                 }
             }
         }
