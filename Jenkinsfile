@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_TOKEN = credentials('talbrou')
         DOCKER_USERNAME = 'talbrou'
-        DOCKER_IMAGE_TAG = 'v1.1.4'
+        DOCKER_IMAGE_TAG = 'v1.1.5'
         DOCKER_IMAGE = 'wog_score_flask:${DOCKER_IMAGE_TAG}'
     }
 
@@ -21,6 +21,14 @@ pipeline {
             steps {
                 script {
                     sh "docker-compose build"
+                }
+            }
+        }
+
+        stage('Make sure no containers are running') {
+            steps {
+                script {
+                    sh 'docker system prune -f'
                 }
             }
         }
