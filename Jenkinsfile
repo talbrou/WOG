@@ -4,8 +4,8 @@ pipeline {
     environment {
         DOCKER_TOKEN = credentials('talbrou')
         DOCKER_USERNAME = 'talbrou'
-        DOCKER_IMAGE_TAG = 'v1.1.5'
-        DOCKER_IMAGE = 'wog_score_flask:${DOCKER_IMAGE_TAG}'
+        DOCKER_IMAGE_TAG = 'v1.1.6'
+        DOCKER_IMAGE_NAME = 'wog_score_flask'
     }
 
     stages {
@@ -53,9 +53,9 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        docker image tag ${DOCKER_IMAGE} ${DOCKER_USERNAME}/${DOCKER_IMAGE}
+                        docker image tag ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
                         docker login -u talbrou -p ${DOCKER_TOKEN}
-                        talbrou/docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE}
+                        talbrou/docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
                     '''
                 }
             }

@@ -24,7 +24,7 @@ def test_scores_service(app_url):
     score = driver.find_element(By.XPATH, '//*[@id="score"]')
     try:       
         assert header.text == "The score is:", "Test Failed!"
-        assert 1<int(score.text)<1000, "Test Failed!"
+        assert 1<int(score.text)<100, "Test Failed!"
         print("Test Passed!")
         driver.quit()
         return True
