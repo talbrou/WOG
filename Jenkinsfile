@@ -20,7 +20,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker-compose up --build"
+                    sh "docker-compose build"
                 }
             }
         }
