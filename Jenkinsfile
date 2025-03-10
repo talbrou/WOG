@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_TOKEN = credentials('talbrou')
         DOCKER_USERNAME = 'talbrou'
-        DOCKER_IMAGE_TAG = 'v1.1.6'
+        DOCKER_IMAGE_TAG = 'v1.1.7'
         DOCKER_IMAGE_NAME = 'wog_score_flask'
     }
 
@@ -28,7 +28,10 @@ pipeline {
         stage('Make sure no containers are running') {
             steps {
                 script {
-                    sh 'docker system prune -f'
+                    sh '''
+                    docker rm -f wog_score_flask
+                    docker system prune -f
+                    '''
                 }
             }
         }
@@ -64,8 +67,11 @@ pipeline {
 
     post {
         always {
-            sh 'docker system prune -f'
-            sh 'docker system prune -f'
+            sh '''
+                docker rm -f wog_score_flask
+                docker system prune -f
+                docker system prune -f
+            '''
         }
     }
 }
